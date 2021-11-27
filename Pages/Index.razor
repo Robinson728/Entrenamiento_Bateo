@@ -50,12 +50,13 @@
                     <h6>Porcentaje Hits Nudillos @bateadores.PorcentajeHitsNudillos%.</h6>
                     <h6>Estado de Jugador @bateadores.Estado.</h6>
                 </div>
-                <div class="col-4 text-center">
+                <div class="col-4 text-center" style="color:black">
                     <br />
                     <br />
                     <br />
                     <h6>Tipo de Lanzamiento: @Tipo.</h6>
                     <h6>Velocidad del lanzamiento: @Velocidad m/h.</h6>
+                    <h6>Bateo de: @BateoTipo.</h6>
                     <img class="figure-img img-fluid rounded text-center" src="Gif/prueba de sic.gif" style="height:269.33px;width:378.8px" />
                 </div>
             </div>
@@ -84,6 +85,7 @@
 
     private int Velocidad;
     private string Tipo;
+    private string BateoTipo;
 
     private void Picheo()
     {
@@ -142,6 +144,14 @@
         Velocidad = velocidad;
     }
 
+    private void definirBateo(bool paso)
+    {
+        if (paso)
+            BateoTipo = "Hit";
+        else
+            BateoTipo = "Foul";
+    }
+
     private void EstadoBateador()
     {
         int aleatorio = random.Next(1, 101);
@@ -193,10 +203,12 @@
                 {
                     bateadores.HitsRectas++;
                     bateadores.Hits++;
+                    definirBateo(true);
                 }
                 else
                 {
                     bateadores.Fouls++;
+                    definirBateo(false);
                 }
                 bateadores.BolasBateadas++;
                 bateadores.RectasBateadas++;
@@ -211,10 +223,12 @@
                 {
                     bateadores.HitsCurvas++;
                     bateadores.Hits++;
+                    definirBateo(true);
                 }
                 else
                 {
                     bateadores.Fouls++;
+                    definirBateo(false);
                 }
                 bateadores.BolasBateadas++;
                 bateadores.CurvasBateadas++;
@@ -228,10 +242,12 @@
                 {
                     bateadores.HitsSliders++;
                     bateadores.Hits++;
+                    definirBateo(true);
                 }
                 else
                 {
                     bateadores.Fouls++;
+                    definirBateo(false);
                 }
                 bateadores.BolasBateadas++;
                 bateadores.SlidersBateadas++;
@@ -245,10 +261,12 @@
                 {
                     bateadores.HitsCambios++;
                     bateadores.Hits++;
+                    definirBateo(true);
                 }
                 else
                 {
                     bateadores.Fouls++;
+                    definirBateo(false);
                 }
                 bateadores.BolasBateadas++;
                 bateadores.CambiosBateados++;
@@ -262,10 +280,12 @@
                 {
                     bateadores.HitsNudillos++;
                     bateadores.Hits++;
+                    definirBateo(true);
                 }
                 else
                 {
                     bateadores.Fouls++;
+                    definirBateo(false);
                 }
                 bateadores.BolasBateadas++;
                 bateadores.NudillosBateados++;
@@ -287,10 +307,12 @@
                 {
                     bateadores.HitsRectas++;
                     bateadores.Hits++;
+                    definirBateo(true);
                 }
                 else
                 {
                     bateadores.Fouls++;
+                    definirBateo(false);
                 }
                 bateadores.BolasBateadas++;
                 bateadores.RectasBateadas++;
@@ -305,10 +327,12 @@
                 {
                     bateadores.HitsCurvas++;
                     bateadores.Hits++;
+                    definirBateo(true);
                 }
                 else
                 {
                     bateadores.Fouls++;
+                    definirBateo(false);
                 }
                 bateadores.BolasBateadas++;
                 bateadores.CurvasBateadas++;
@@ -322,10 +346,12 @@
                 {
                     bateadores.HitsSliders++;
                     bateadores.Hits++;
+                    definirBateo(true);
                 }
                 else
                 {
                     bateadores.Fouls++;
+                    definirBateo(false);
                 }
                 bateadores.BolasBateadas++;
                 bateadores.SlidersBateadas++;
@@ -339,10 +365,12 @@
                 {
                     bateadores.HitsCambios++;
                     bateadores.Hits++;
+                    definirBateo(true);
                 }
                 else
                 {
                     bateadores.Fouls++;
+                    definirBateo(false);
                 }
                 bateadores.BolasBateadas++;
                 bateadores.CambiosBateados++;
@@ -356,10 +384,12 @@
                 {
                     bateadores.HitsNudillos++;
                     bateadores.Hits++;
+                    definirBateo(true);
                 }
                 else
                 {
                     bateadores.Fouls++;
+                    definirBateo(false);
                 }
                 bateadores.BolasBateadas++;
                 bateadores.NudillosBateados++;

@@ -1,57 +1,60 @@
 ﻿@page "/"
 @using Entrenamiento_Bateo.Models;
 @using Entrenamiento_Bateo.BLL; 
+@inject NavigationManager Nav
 
-<div class="card-header">
-    <h3>Entrenamiento de Bateo</h3>
+<div class="card-header bg-success text-center">
+    <h3 style="color: white">Entrenamiento de Bateo</h3>
 </div>
 
 <div class="row">
     <div class="col">
         <div class="row">
-            <div class="col">
-                <p></p> Datos General
-                <p></p> Pelotas bateadas @bateadores.BolasBateadas
-                <p></p> Pelotas Lanzadas @bateadores.BolasLanzadas
-                <p></p> Porcentaje de batedo @bateadores.PorcentajeBateo%
-                <p></p> Pelotas bateadas Hits @bateadores.Hits
-                <p></p> Pelotas bateadas Fouls @bateadores.Fouls
-                <p></p> Porcentaje de batedo Hits @bateadores.PorcentajeHits%
-                <p></p> Pelotas bateadas Rectas @bateadores.RectasBateadas
-                <p></p> Pelotas Lanzadas Rectas @bateadores.RectasLanzadas
-                <p></p> Porcentaje de batedo Rectas @bateadores.PorcentajeRecta%
-                <p></p> Pelotas bateadas Hits Rectas @bateadores.HitsRectas
-                <p></p> Porcentaje Hits Rectas @bateadores.PorcentajeHitsRectas%
-                <p></p> Pelotas bateadas Curvas @bateadores.CurvasBateadas
-                <p></p> Pelotas Lanzadas Curvas @bateadores.CurvasLanzadas
-                <p></p> Porcentaje de batedo Curvas @bateadores.PorcentajeCurva%
-                <p></p> Pelotas bateadas Hits Curvas @bateadores.HitsCurvas
-                <p></p> Porcentaje Hits Curvas @bateadores.PorcentajeHitsCurvas%
-                <p></p> Pelotas bateadas Sliders @bateadores.SlidersBateadas
-                <p></p> Pelotas Lanzadas Sliders @bateadores.SlidersLanzados
-                <p></p> Porcentaje de batedo Sliders @bateadores.PorcentajeSlider%
-                <p></p> Pelotas bateadas Hits Sliders @bateadores.HitsSliders
-                <p></p> Porcentaje Hits Sliders @bateadores.PorcentajeHitsSliders%
-                <p></p> Pelotas bateadas Cambios @bateadores.CambiosBateados
-                <p></p> Pelotas Lanzadas Cambios @bateadores.CambiosLanzados
-                <p></p> Porcentaje de batedo Cambios @bateadores.PorcentajeCambio%
-                <p></p> Pelotas bateadas Hits Cambios @bateadores.HitsCambios
-                <p></p> Porcentaje Hits Cambios @bateadores.PorcentajeHitsCambios%
-                <p></p> Pelotas bateadas Nudillos @bateadores.NudillosBateados
-                <p></p> Pelotas Lanzadas Nudillos @bateadores.NudillosLanzados
-                <p></p> Porcentaje de batedo Nudillos @bateadores.PorcentajeNudillo%
-                <p></p> Pelotas bateadas Hits Nudillos @bateadores.HitsNudillos
-                <p></p> Porcentaje Hits Nudillos @bateadores.PorcentajeHitsNudillos%
-                <p></p> Estado de Jugador @bateadores.Estado 
+            <div class="col-3">
+                <h3>Estad&iacute;sticas</h3>
+                <h6>Pelotas bateadas @bateadores.BolasBateadas</h6>
+                <h6>Pelotas Lanzadas @bateadores.BolasLanzadas</h6>
+                <h6>Porcentaje de batedo @bateadores.PorcentajeBateo%</h6>
+                <h6>Pelotas bateadas Hits @bateadores.Hits</h6>
+                <h6>Pelotas bateadas Fouls @bateadores.Fouls</h6>
+                <h6>Porcentaje de batedo Hits @bateadores.PorcentajeHits%</h6>
+                <h6>Pelotas bateadas Rectas @bateadores.RectasBateadas</h6>
+                <h6>Pelotas Lanzadas Rectas @bateadores.RectasLanzadas</h6>
+                <h6>Porcentaje de batedo Rectas @bateadores.PorcentajeRecta%</h6>
+                <h6>Pelotas bateadas Hits Rectas @bateadores.HitsRectas</h6>
+                <h6>Porcentaje Hits Rectas @bateadores.PorcentajeHitsRectas%</h6>
+                <h6>Pelotas bateadas Curvas @bateadores.CurvasBateadas</h6>
+                <h6>Pelotas Lanzadas Curvas @bateadores.CurvasLanzadas</h6>
+                <h6>Porcentaje de batedo Curvas @bateadores.PorcentajeCurva%</h6>
+                <h6>Pelotas bateadas Hits Curvas @bateadores.HitsCurvas</h6>
+                <h6>Porcentaje Hits Curvas @bateadores.PorcentajeHitsCurvas%</h6>
             </div>
-
+            <div class="col-3">
+                <br /><br />
+                <h6>Pelotas bateadas Sliders @bateadores.SlidersBateadas</h6>
+                <h6>Pelotas Lanzadas Sliders @bateadores.SlidersLanzados</h6>
+                <h6>Porcentaje de batedo Sliders @bateadores.PorcentajeSlider%</h6>
+                <h6>Pelotas bateadas Hits Sliders @bateadores.HitsSliders</h6>
+                <h6>Porcentaje Hits Sliders @bateadores.PorcentajeHitsSliders%</h6>
+                <h6>Pelotas bateadas Cambios @bateadores.CambiosBateados</h6>
+                <h6>Pelotas Lanzadas Cambios @bateadores.CambiosLanzados</h6>
+                <h6>Porcentaje de batedo Cambios @bateadores.PorcentajeCambio%</h6>
+                <h6>Pelotas bateadas Hits Cambios @bateadores.HitsCambios</h6>
+                <h6>Porcentaje Hits Cambios @bateadores.PorcentajeHitsCambios%</h6>
+                <h6>Pelotas bateadas Nudillos @bateadores.NudillosBateados</h6>
+                <h6>Pelotas Lanzadas Nudillos @bateadores.NudillosLanzados</h6>
+                <h6>Porcentaje de batedo Nudillos @bateadores.PorcentajeNudillo%</h6>
+                <h6>Pelotas bateadas Hits Nudillos @bateadores.HitsNudillos</h6>
+                <h6>Porcentaje Hits Nudillos @bateadores.PorcentajeHitsNudillos%</h6>
+                <h6>Estado de Jugador @bateadores.Estado</h6>
+            </div>
         </div>
     </div>
 </div>
 
 <div>
     <button class="btn btn-primary" @onclick="Empezar">Iniciar</button>
-    <a class="btn btn-dark" href="resultado">Resultados</a>
+    <button class="btn btn-dark" @onclick="PasarDatos">Resultados</button>
 </div>
 
 
@@ -65,6 +68,7 @@
     private int gripe;
     private int resaca;
     private int trasnocho;
+    private int condicionAfecta;
 
     private void Picheo()
     {
@@ -370,55 +374,56 @@
     bateadores.PorcentajeHitsSliders = Math.Round((bateadores.HitsSliders / bateadores.SlidersBateadas) * 100);
     bateadores.PorcentajeHitsCambios = Math.Round((bateadores.HitsCambios / bateadores.CambiosBateados) * 100);
     bateadores.PorcentajeHitsNudillos = Math.Round((bateadores.HitsNudillos / bateadores.NudillosBateados) * 100);
-
 }
 
-private void CondicionQueMasAfecta()
+private int CondicionQueMasAfecta()
 {
     if ((covid > gripe) && (covid > resaca) && (covid > trasnocho))
     {
-        bateadores.Afeccion = 1;
+        return 2;
     }
     if ((gripe > covid) && (gripe > resaca) && (gripe > trasnocho))
     {
-        bateadores.Afeccion = 2;
+        return 3;
     }
     if ((resaca > gripe) && (resaca > covid) && (resaca > trasnocho))
     {
-        bateadores.Afeccion = 3;
+        return 4;
     }
     if ((trasnocho > gripe) && (trasnocho > resaca) && (trasnocho > covid))
     {
-        bateadores.Afeccion = 4;
+        return 5;
     }
     else
-        bateadores.Afeccion = 10;
+        return 6;
+}
+
+private  void PasarDatos()
+{
+    Nav.NavigateTo($"/resultado/{condicionAfecta}");
 }
 
 private async Task Empezar()
 {
-    //EstadoBateador();
     bool guardado;
-    for(int x=0; x<20; x++)
-            {
 
+    for(int x=0; x<20; x++)
+    {
         EstadoBateador();
         for (int i = 0; i < 400; i++)
         {
             Picheo();
-            //Bateo();
             Contacto();
 
-            @*StateHasChanged();
-            await Task.Delay(200);*@
-            }
             StateHasChanged();
-            await Task.Delay(1000);
-            guardado = BateadoresBLL.Guardar(bateadores);
-            bateadores = new Bateadores();
+            await Task.Delay(200);
         }
-
-
-        bateadores.Afeccion = 0;
-    }
+        StateHasChanged();
+        await Task.Delay(10000);
+        guardado = BateadoresBLL.Guardar(bateadores);
+        bateadores = new Bateadores();
+    }   
+    condicionAfecta = CondicionQueMasAfecta();
+    bateadores.Afeccion = 0;
+}
 }

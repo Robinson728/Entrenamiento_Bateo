@@ -1,56 +1,78 @@
 ﻿@page "/resultado"
+@page "/resultado/{condicionAfecta:int}"
 
 @using Entrenamiento_Bateo.Models;
 @using Entrenamiento_Bateo.BLL;
 
-    <div class="card">
 
-        <div class="card-header bg-info text-center">
-            <h2>Resultados</h2>
-        </div>
+<div class="card">
 
-        <div class="card-body">
-                <table class="table table-striped">
-                        <thead class="bg-light">
-                            <tr>
-                                <th>Bateador Id</th>
-                                <th>Cantidad de Lanzamientos</th>
-                                <th>Bolas Bateadas</th>
-                                <th>Porcentaje de Bateo</th>
-                                <th>Cantidad de Rectas Lanzadas</th>
-                                <th>Cantidad de Curvas Lanzadas</th>
-                                <th>Cantidad de Sliders Lanzadas</th>
-                                <th>Cantidad de Cambios Lanzados</th>
-                                <th>Cantidad de Nudillos Lanzados</th>
-                                <th>Porcentaje de Bateo de Hit</th>
-                            </tr>
-                        </thead>
+    <div class="card-header bg-info text-center">
+        <h2>Resultados</h2>
+    </div>
 
-                        <tbody>
-                            @foreach (var b in bateadores)
-                            {
-                                <tr>
-                                    <td>@b.BateadorId</td>
-                                    <td>@b.BolasLanzadas</td>
-                                    <td>@b.BolasBateadas</td>
-                                    <td>@b.PorcentajeBateo%</td>
-                                    <td>@b.RectasLanzadas</td>
-                                    <td>@b.CurvasLanzadas</td>
-                                    <td>@b.SlidersLanzados</td>
-                                    <td>@b.CambiosLanzados</td>
-                                    <td>@b.NudillosLanzados</td>
-                                    <td>@b.PorcentajeHits%</td>
-                                </tr>
-                            }
-                        </tbody>
-                </table>
+    <div class="card-body">
+        <table class="table table-striped">
+            <thead class="bg-light">
+                <tr>
+                    <th>Bateador Id</th>
+                    <th>Cantidad de Lanzamientos</th>
+                    <th>Bolas Bateadas</th>
+                    <th>Porcentaje de Bateo</th>
+                    <th>Cantidad de Rectas Lanzadas</th>
+                    <th>Cantidad de Curvas Lanzadas</th>
+                    <th>Cantidad de Sliders Lanzadas</th>
+                    <th>Cantidad de Cambios Lanzados</th>
+                    <th>Cantidad de Nudillos Lanzados</th>
+                    <th>Porcentaje de Bateo de Hit</th>
+                </tr>
+            </thead>
 
-            </div>
-        </div>
+            <tbody>
+                @foreach (var b in bateadores)
+                {
+                    <tr>
+                        <td>@b.BateadorId</td>
+                        <td>@b.BolasLanzadas</td>
+                        <td>@b.BolasBateadas</td>
+                        <td>@b.PorcentajeBateo%</td>
+                        <td>@b.RectasLanzadas</td>
+                        <td>@b.CurvasLanzadas</td>
+                        <td>@b.SlidersLanzados</td>
+                        <td>@b.CambiosLanzados</td>
+                        <td>@b.NudillosLanzados</td>
+                        <td>@b.PorcentajeHits%</td>
+                    </tr>
+                    contadorRecta += b.PorcentajeHitsRectas;
+                    contadorCurva += b.PorcentajeHitsCurvas;
+                    contadorSlider += b.PorcentajeHitsSliders;
+                    contadorCambio += b.PorcentajeHitsCambios;
+                    contadorNudillo += b.PorcentajeHitsNudillos;
+                }
+            </tbody>
+        </table>
+
+    </div>
+    <div class="card-footer">
+        <p>Situaci&oacute;n o Afecci&oacute;n que m&aacute;s afect&oacute; a los Bateadores: @Condicion()</p>
+        <p>Lanzamiento al que mejor les fue: @PicheoMasBateado()</p>
+        <p>Lanzamiento al que peor les fue: @peorPicheo</p>
+    </div>
+</div>
 
 
 @code {
+    [Parameter]
+    public int condicionAfecta { get; set; }
 
+    private double contadorRecta;
+    private double contadorCurva;
+    private double contadorSlider;
+    private double contadorCambio;
+    private double contadorNudillo;
+    private double mejorporcentaje;
+    private string mejorpicheo;
+    private string peorPicheo="Nudillo";
     private List<Bateadores> bateadores = new List<Bateadores>();
 
     protected override void OnInitialized()
@@ -58,8 +80,86 @@
         Buscar();
     }
 
-    public void Buscar()
+    private void Buscar()
     {
         bateadores = BateadoresBLL.GetList(r => true);
+    }
+
+    private string Condicion()
+    {
+        if (condicionAfecta == 2)
+        {
+            return "Recuperación de Covid";
+        }
+        if (condicionAfecta == 3)
+        {
+            return "Gripe Leve";
+        }
+        if (condicionAfecta == 4)
+        {
+            return "Resaca por Alcohol";
+        }
+        if (condicionAfecta == 5)
+        {
+            return "Trasnocho";
+        }
+        if (condicionAfecta == 6)
+        {
+            return "No se presentó ninguna situación.";
+        }
+        else return "";
+    }
+
+    private int MejorBateoPicheo()
+    {
+        if ((contadorRecta > contadorCurva) && (contadorRecta > contadorSlider) && (contadorRecta > contadorCambio) && (contadorRecta > contadorNudillo))
+        {
+            return 2;
+        }
+        if ((contadorCurva > contadorRecta) && (contadorCurva > contadorSlider) && (contadorCurva > contadorCambio) && (contadorCurva > contadorNudillo))
+        {
+            return 3;
+        }
+        if ((contadorSlider > contadorRecta) && (contadorSlider > contadorCurva) && (contadorSlider > contadorCambio) && (contadorSlider > contadorNudillo))
+        {
+            return 4;
+        }
+        if ((contadorCambio > contadorCurva) && (contadorCambio > contadorSlider) && (contadorCambio > contadorRecta) && (contadorCambio > contadorNudillo))
+        {
+            return 5;
+        }
+        if ((contadorNudillo > contadorCurva) && (contadorNudillo > contadorSlider) && (contadorNudillo > contadorRecta) && (contadorNudillo > contadorCambio))
+        {
+            return 6;
+        }
+        else
+            return 7;
+    }
+
+    private string PicheoMasBateado()
+    {
+        mejorporcentaje = MejorBateoPicheo();
+
+        if (mejorporcentaje == 2)
+        {
+            return "Recta";
+        }
+        if (mejorporcentaje == 3)
+        {
+            return "Curva";
+        }
+        if (mejorporcentaje == 4)
+        {
+            return "Slider";
+        }
+        if (mejorporcentaje == 5)
+        {
+            return "Cambio";
+        }
+        if (mejorporcentaje == 6)
+        {
+            return "Nudillo";
+        }
+        else return "";
     }
 }

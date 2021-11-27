@@ -10,27 +10,38 @@
         <div class="row">
             <div class="col">
                 <p></p> Datos General
-                <p></p> Porcentaje de batedo %@bateadores.PorcentajeBateo
-                <p></p> Porcentaje de batedo Rectas %@bateadores.PorcentajeRecta
-                <p></p> Porcentaje de batedo Curvas %@bateadores.PorcentajeCurva
-                <p></p> Porcentaje de batedo Sliders %@bateadores.PorcentajeSlider
-                <p></p> Porcentaje de batedo Cambios %@bateadores.PorcentajeCambio
-                <p></p> Porcentaje de batedo Nudillos %@bateadores.PorcentajeNudillo
-                <p></p> Porcentaje de batedo Hits %@bateadores.PorcentajeHits
                 <p></p> Pelotas bateadas @bateadores.BolasBateadas
-                <p></p> Pelotas bateadas Rectas @bateadores.RectasBateadas
-                <p></p> Pelotas bateadas Curvas @bateadores.CurvasBateadas
-                <p></p> Pelotas bateadas Sliders @bateadores.SlidersBateadas
-                <p></p> Pelotas bateadas Cambios @bateadores.CambiosBateados
-                <p></p> Pelotas bateadas Nudillos @bateadores.NudillosBateados
+                <p></p> Pelotas Lanzadas @bateadores.BolasLanzadas
+                <p></p> Porcentaje de batedo @bateadores.PorcentajeBateo%
                 <p></p> Pelotas bateadas Hits @bateadores.Hits
                 <p></p> Pelotas bateadas Fouls @bateadores.Fouls
+                <p></p> Porcentaje de batedo Hits @bateadores.PorcentajeHits%
+                <p></p> Pelotas bateadas Rectas @bateadores.RectasBateadas
                 <p></p> Pelotas Lanzadas Rectas @bateadores.RectasLanzadas
+                <p></p> Porcentaje de batedo Rectas @bateadores.PorcentajeRecta%
+                <p></p> Pelotas bateadas Hits Rectas @bateadores.HitsRectas
+                <p></p> Porcentaje Hits Rectas @bateadores.PorcentajeHitsRectas%
+                <p></p> Pelotas bateadas Curvas @bateadores.CurvasBateadas
                 <p></p> Pelotas Lanzadas Curvas @bateadores.CurvasLanzadas
+                <p></p> Porcentaje de batedo Curvas @bateadores.PorcentajeCurva%
+                <p></p> Pelotas bateadas Hits Curvas @bateadores.HitsCurvas
+                <p></p> Porcentaje Hits Curvas @bateadores.PorcentajeHitsCurvas%
+                <p></p> Pelotas bateadas Sliders @bateadores.SlidersBateadas
                 <p></p> Pelotas Lanzadas Sliders @bateadores.SlidersLanzados
+                <p></p> Porcentaje de batedo Sliders @bateadores.PorcentajeSlider%
+                <p></p> Pelotas bateadas Hits Sliders @bateadores.HitsSliders
+                <p></p> Porcentaje Hits Sliders @bateadores.PorcentajeHitsSliders%
+                <p></p> Pelotas bateadas Cambios @bateadores.CambiosBateados
                 <p></p> Pelotas Lanzadas Cambios @bateadores.CambiosLanzados
+                <p></p> Porcentaje de batedo Cambios @bateadores.PorcentajeCambio%
+                <p></p> Pelotas bateadas Hits Cambios @bateadores.HitsCambios
+                <p></p> Porcentaje Hits Cambios @bateadores.PorcentajeHitsCambios%
+                <p></p> Pelotas bateadas Nudillos @bateadores.NudillosBateados
                 <p></p> Pelotas Lanzadas Nudillos @bateadores.NudillosLanzados
-                <p></p> Lo que mas afecto @bateadores.Afeccion
+                <p></p> Porcentaje de batedo Nudillos @bateadores.PorcentajeNudillo%
+                <p></p> Pelotas bateadas Hits Nudillos @bateadores.HitsNudillos
+                <p></p> Porcentaje Hits Nudillos @bateadores.PorcentajeHitsNudillos%
+                <p></p> Estado de Jugador @bateadores.Afeccion
             </div>
 
         </div>
@@ -74,6 +85,7 @@
             velocidad = random.Next(90, 100);
             rectas++;
             bateadores.RectasLanzadas++;
+            bateadores.BolasLanzadas++;
         }
         else if (tipo == 2)//curvas
         {
@@ -81,6 +93,7 @@
             velocidad = random.Next(79, 87);
             curvas++;
             bateadores.CurvasLanzadas++;
+            bateadores.BolasLanzadas++;
         }
         else if (tipo == 3)//slider
         {
@@ -88,6 +101,7 @@
             velocidad = random.Next(82, 92);
             sliders++;
             bateadores.SlidersLanzados++;
+            bateadores.BolasLanzadas++;
         }
         else if (tipo == 4)//cambio
         {
@@ -95,6 +109,7 @@
             velocidad = random.Next(80, 88);
             cambios++;
             bateadores.CambiosLanzados++;
+            bateadores.BolasLanzadas++;
         }
         else if (tipo == 5)//nudillo
         {
@@ -102,6 +117,7 @@
             velocidad = random.Next(69, 75);
             nudillos++;
             bateadores.NudillosLanzados++;
+            bateadores.BolasLanzadas++;
         }
 
         Bateo(picheo);
@@ -110,51 +126,69 @@
     private void EstadoBateador()
     {
         int aleatorio = random.Next(1, 101);
-        int condicion;
 
         if ((aleatorio >= 1 && aleatorio <= 10) || (aleatorio >= 91 && aleatorio <= 100) || (aleatorio >= 16 && aleatorio <= 25)
              || (aleatorio >= 56 && aleatorio <= 60) || (aleatorio >= 31 && aleatorio <= 50) || (aleatorio > 61 && aleatorio <= 85))
         {
-            condicion = 1;//sano
             sano++;
+            bateadores.Afeccion = 1;
         }
         else if (aleatorio >= 51 && aleatorio <= 55)
         {
-            condicion = 2;//cov
             covid++;
+            bateadores.Afeccion = 2;
         }
         else if (aleatorio >= 26 && aleatorio <= 30)
         {
-            condicion = 3;//gripe
             gripe++;
+            bateadores.Afeccion = 3;
         }
         else if (aleatorio >= 11 && aleatorio <= 15)
         {
-            condicion = 4;//resaca
             resaca++;
+            bateadores.Afeccion = 4;
         }
         else if (aleatorio >= 86 && aleatorio <= 90)
         {
-            condicion = 5;//trasnocho
             trasnocho++;
+            bateadores.Afeccion = 5;
         }
     }
 
     private void Bateo(int picheo)
     {
+        if (bateadores.Afeccion==1)
+        {
+            BateoSano(picheo);
+        }
+        if(bateadores.Afeccion != 1 && bateadores.BolasLanzadas <= 150)
+        {
+            BateoAfectado(picheo);
+        }
+        if (bateadores.Afeccion != 1 && bateadores.BolasLanzadas > 150)
+        {
+            BateoSano(picheo);
+        }
+    }
+
+    private void BateoSano(int picheo)
+    {
         int aleatorio = random.Next(1, 101);
         int direccion = random.Next(1, 101);
         int bateada, conexion;
+        int i = 0;
 
+        //if()
         if (picheo == 1)//recta
         {
-            if ((aleatorio >= 1 && aleatorio <= 40) || (aleatorio >= 51 && aleatorio <= 90))//80%
+            if ((aleatorio >= 1 && aleatorio <= 40) || (aleatorio >= 51 && aleatorio <= 90+i))//80%
             {
                 bateada = 1;
                 if ((direccion >= 1 && direccion <= 30) || (direccion >= 41 && direccion <= 80) || (direccion >= 91 && direccion <= 100))
                 {
                     conexion = 1;
                     hit++;
+                    bateadores.HitsRectas++;
                     bateadores.Hits++;
                 }
                 else
@@ -180,6 +214,7 @@
                 {
                     conexion = 1;
                     hit++;
+                    bateadores.HitsCurvas++;
                     bateadores.Hits++;
                 }
                 else
@@ -204,6 +239,7 @@
                 {
                     conexion = 1;
                     hit++;
+                    bateadores.HitsSliders++;
                     bateadores.Hits++;
                 }
                 else
@@ -228,6 +264,7 @@
                 {
                     conexion = 1;
                     hit++;
+                    bateadores.HitsCambios++;
                     bateadores.Hits++;
                 }
                 else
@@ -252,6 +289,7 @@
                 {
                     conexion = 1;
                     hit++;
+                    bateadores.HitsNudillos++;
                     bateadores.Hits++;
                 }
                 else
@@ -268,20 +306,163 @@
                 bateada = 0;
         }
 
+
+    }
+
+    private void BateoAfectado(int picheo)
+    {
+        int aleatorio = random.Next(1, 101);
+        int direccion = random.Next(1, 101);
+        int bateada, conexion;
+        int i = 0;
+
+        //if()
+        if (picheo == 1)//recta
+        {
+            if ((aleatorio >= 1 && aleatorio <= 40) || (aleatorio >= 61 && aleatorio <= 90 + i))//70%
+            {
+                bateada = 1;
+                if ((direccion >= 1 && direccion <= 30) || (direccion >= 41 && direccion <= 80))
+                {
+                    conexion = 1;
+                    hit++;
+                    bateadores.HitsRectas++;
+                    bateadores.Hits++;
+                }
+                else
+                {
+                    conexion = 0;
+                    foul++;
+                    bateadores.Fouls++;
+                }
+                bolaBateada++;
+                bateadores.BolasBateadas++;
+                bateadores.RectasBateadas++;
+            }
+            else
+                bateada = 0;
+        }
+        if (picheo == 2)//curva
+        {
+            if (aleatorio >= 11 && aleatorio <= 35 || aleatorio >= 51 && aleatorio <= 90)//65%
+            {
+                bateada = 1;
+                if ((direccion >= 10 && direccion <= 35) || (direccion >= 61 && direccion <= 75)
+                    || (direccion >= 41 && direccion <= 55) || (direccion >= 91 && direccion <= 100))
+                {
+                    conexion = 1;
+                    hit++;
+                    bateadores.HitsCurvas++;
+                    bateadores.Hits++;
+                }
+                else
+                {
+                    conexion = 0;
+                    foul++;
+                    bateadores.Fouls++;
+                }
+                bolaBateada++;
+                bateadores.BolasBateadas++;
+                bateadores.CurvasBateadas++;
+            }
+            else
+                bateada = 0;
+        }
+        if (picheo == 3)//slider
+        {
+            if (aleatorio >= 11 && aleatorio <= 50 || aleatorio >= 71 && aleatorio <= 90)//60%
+            {
+                bateada = 1;
+                if ((direccion >= 1 && direccion <= 30) || (direccion >= 41 && direccion <= 60) || (direccion >= 81 && direccion <= 90))
+                {
+                    conexion = 1;
+                    hit++;
+                    bateadores.HitsSliders++;
+                    bateadores.Hits++;
+                }
+                else
+                {
+                    conexion = 0;
+                    foul++;
+                    bateadores.Fouls++;
+                }
+                bolaBateada++;
+                bateadores.BolasBateadas++;
+                bateadores.SlidersBateadas++;
+            }
+            else
+                bateada = 0;
+        }
+        if (picheo == 4)//cambio
+        {
+            if (aleatorio >= 21 && aleatorio <= 40 || aleatorio >= 51 && aleatorio <= 90)//60%
+            {
+                bateada = 1;
+                if ((direccion >= 16 && direccion <= 30) || (direccion >= 51 && direccion <= 75) || (direccion >= 81 && direccion <= 100))
+                {
+                    conexion = 1;
+                    hit++;
+                    bateadores.HitsCambios++;
+                    bateadores.Hits++;
+                }
+                else
+                {
+                    conexion = 0;
+                    foul++;
+                    bateadores.Fouls++;
+                }
+                bolaBateada++;
+                bateadores.BolasBateadas++;
+                bateadores.CambiosBateados++;
+            }
+            else
+                bateada = 0;
+        }
+        if (picheo == 5)//nudillo
+        {
+            if (aleatorio >= 1 && aleatorio <= 30 || aleatorio >= 61 && aleatorio <= 80)//50%
+            {
+                bateada = 1;
+                if ((direccion >= 11 && direccion <= 30) || (direccion >= 41 && direccion <= 60) || (direccion >= 81 && direccion <= 90))
+                {
+                    conexion = 1;
+                    hit++;
+                    bateadores.HitsNudillos++;
+                    bateadores.Hits++;
+                }
+                else
+                {
+                    conexion = 0;
+                    foul++;
+                    bateadores.Fouls++;
+                }
+                bolaBateada++;
+                bateadores.BolasBateadas++;
+                bateadores.NudillosBateados++;
+            }
+            else
+                bateada = 0;
+        }
     }
 
     private void Contacto()
     {
-        double bolaslanzadas = bateadores.RectasLanzadas + bateadores.CurvasLanzadas + bateadores.SlidersLanzados
-            + bateadores.CambiosLanzados + bateadores.NudillosLanzados;
+        @*double bolaslanzadas = bateadores.RectasLanzadas + bateadores.CurvasLanzadas + bateadores.SlidersLanzados
+            + bateadores.CambiosLanzados + bateadores.NudillosLanzados;*@
 
-        bateadores.PorcentajeBateo = Math.Round((bateadores.BolasBateadas / bolaslanzadas) * 100);
+        bateadores.PorcentajeBateo = Math.Round((bateadores.BolasBateadas / bateadores.BolasLanzadas) * 100);
         bateadores.PorcentajeRecta = Math.Round((bateadores.RectasBateadas / bateadores.RectasLanzadas) * 100);
         bateadores.PorcentajeCurva = Math.Round((bateadores.CurvasBateadas / bateadores.CurvasLanzadas) * 100);
         bateadores.PorcentajeSlider = Math.Round((bateadores.SlidersBateadas / bateadores.SlidersLanzados) * 100);
         bateadores.PorcentajeCambio = Math.Round((bateadores.CambiosBateados / bateadores.CambiosLanzados) * 100);
         bateadores.PorcentajeNudillo = Math.Round((bateadores.NudillosBateados / bateadores.NudillosLanzados) * 100);
-        bateadores.PorcentajeHits = Math.Round((bateadores.Hits / bolaslanzadas) * 100);
+        bateadores.PorcentajeHits = Math.Round((bateadores.Hits / bateadores.BolasLanzadas) * 100);
+        bateadores.PorcentajeHitsRectas = Math.Round((bateadores.HitsRectas / bateadores.RectasLanzadas) * 100);
+        bateadores.PorcentajeHitsCurvas = Math.Round((bateadores.HitsCurvas / bateadores.CurvasLanzadas) * 100);
+        bateadores.PorcentajeHitsSliders = Math.Round((bateadores.HitsSliders / bateadores.SlidersLanzados) * 100);
+        bateadores.PorcentajeHitsCambios = Math.Round((bateadores.HitsCambios / bateadores.CambiosLanzados) * 100);
+        bateadores.PorcentajeHitsNudillos = Math.Round((bateadores.HitsNudillos / bateadores.NudillosLanzados) * 100);
+
     }
 
     private void CondicionQueMasAfecta()
@@ -309,21 +490,19 @@
     private async Task Empezar()
     {
         //EstadoBateador();
-        for (int x = 0; x < 5; x++)
-        {
-            for (int i = 0; i < 80; i++)
-            {
-                Picheo();
-                //Bateo();
-                Contacto();
 
-                @*StateHasChanged();
-                    await Task.Delay(500);*@
-            }
+        EstadoBateador();
+        for (int i = 0; i < 400; i++)
+        {
+            Picheo();
+            //Bateo();
+            Contacto();
+
             StateHasChanged();
-            await Task.Delay(1000);
-            bateadores = new Bateadores();
+            await Task.Delay(200);
         }
-        CondicionQueMasAfecta();
+
+        //bateadores = new Bateadores();
+        bateadores.Afeccion = 0;
     }
 }

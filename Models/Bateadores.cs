@@ -18,7 +18,12 @@ namespace Entrenamiento_Bateo.Models
         public double PorcentajeSlider { get; set; }
         public double PorcentajeNudillo { get; set; }
         public double PorcentajeHits { get; set; }
-        public double PorcentajeFouls { get; set; }
+        public double PorcentajeHitsRectas { get; set; }
+        public double PorcentajeHitsCurvas { get; set; }
+        public double PorcentajeHitsSliders { get; set; }
+        public double PorcentajeHitsCambios { get; set; }
+        public double PorcentajeHitsNudillos { get; set; }
+        public double BolasLanzadas { get; set; }
         public double BolasBateadas { get; set; }
         public double RectasLanzadas { get; set; }
         public double CurvasLanzadas { get; set; }
@@ -26,6 +31,11 @@ namespace Entrenamiento_Bateo.Models
         public double CambiosLanzados { get; set; }
         public double NudillosLanzados { get; set; }
         public double Hits { get; set; }
+        public double HitsRectas { get; set; }
+        public double HitsCurvas { get; set; }
+        public double HitsSliders { get; set; }
+        public double HitsCambios { get; set; }
+        public double HitsNudillos { get; set; }
         public double Fouls { get; set; }
         public double Afeccion { get; set; }
         public double RectasBateadas { get; set; }
@@ -33,6 +43,5 @@ namespace Entrenamiento_Bateo.Models
         public double SlidersBateadas { get; set; }
         public double CambiosBateados { get; set; }
         public double NudillosBateados { get; set; }
-
     }
 }

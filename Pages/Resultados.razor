@@ -1,0 +1,65 @@
+﻿@page "/resultado"
+
+@using Entrenamiento_Bateo.Models;
+@using Entrenamiento_Bateo.BLL;
+
+    <div class="card">
+
+        <div class="card-header bg-info text-center">
+            <h2>Resultados</h2>
+        </div>
+
+        <div class="card-body">
+                <table class="table table-striped">
+                        <thead class="bg-light">
+                            <tr>
+                                <th>Bateador Id</th>
+                                <th>Cantidad de Lanzamientos</th>
+                                <th>Bolas Bateadas</th>
+                                <th>Porcentaje de Bateo</th>
+                                <th>Cantidad de Rectas Lanzadas</th>
+                                <th>Cantidad de Curvas Lanzadas</th>
+                                <th>Cantidad de Sliders Lanzadas</th>
+                                <th>Cantidad de Cambios Lanzados</th>
+                                <th>Cantidad de Nudillos Lanzados</th>
+                                <th>Porcentaje de Bateo de Hit</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @foreach (var b in bateadores)
+                            {
+                                <tr>
+                                    <td>@b.BateadorId</td>
+                                    <td>@b.BolasLanzadas</td>
+                                    <td>@b.BolasBateadas</td>
+                                    <td>@b.PorcentajeBateo%</td>
+                                    <td>@b.RectasLanzadas</td>
+                                    <td>@b.CurvasLanzadas</td>
+                                    <td>@b.SlidersLanzados</td>
+                                    <td>@b.CambiosLanzados</td>
+                                    <td>@b.NudillosLanzados</td>
+                                    <td>@b.PorcentajeHits%</td>
+                                </tr>
+                            }
+                        </tbody>
+                </table>
+
+            </div>
+        </div>
+
+
+@code {
+
+    private List<Bateadores> bateadores = new List<Bateadores>();
+
+    protected override void OnInitialized()
+    {
+        Buscar();
+    }
+
+    public void Buscar()
+    {
+        bateadores = BateadoresBLL.GetList(r => true);
+    }
+}

@@ -38,6 +38,7 @@ namespace Entrenamiento_Bateo.Models
         public double HitsNudillos { get; set; }
         public double Fouls { get; set; }
         public double Afeccion { get; set; }
+        public string Estado { get; set; }
         public double RectasBateadas { get; set; }
         public double CurvasBateadas { get; set; }
         public double SlidersBateadas { get; set; }
